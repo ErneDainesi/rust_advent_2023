@@ -4,19 +4,13 @@ pub fn part_one(input: &str) -> Option<u32> {
     Some(
         input
             .lines()
-            .map(|s| s.chars().filter(|c| c.is_numeric()).collect())
-            .collect::<Vec<String>>()
-            .iter_mut()
             .map(|s| {
-                if s.len() > 2 {
-                    let new_value = format!("{}{}", s.chars().next().unwrap(), s.chars().last().unwrap());
-                    *s = new_value;
-                } else if s.len() == 1 {
-                    let first_char: char = s.chars().next().unwrap();
-                    let new_value = format!("{}{}", first_char, first_char);
-                    *s = new_value;
-                }
-                return s.parse::<u32>().unwrap();
+                s.chars().filter(|c| c.is_digit(10)).collect()
+            })
+            .collect::<Vec<String>>()
+            .iter()
+            .map(|s| {
+                s.chars().next().unwrap().to_digit(10).unwrap() * 10 + s.chars().last().unwrap().to_digit(10).unwrap()
             })
             .collect::<Vec<u32>>()
             .iter()
