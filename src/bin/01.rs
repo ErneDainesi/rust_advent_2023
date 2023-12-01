@@ -3,9 +3,7 @@ advent_of_code::solution!(1);
 pub fn part_one(input: &str) -> Option<u32> {
     Some(
         input
-            .split('\n')
-            .collect::<Vec<&str>>()
-            .iter()
+            .lines()
             .map(|s| s.chars().filter(|c| c.is_numeric()).collect())
             .collect::<Vec<String>>()
             .iter_mut()
