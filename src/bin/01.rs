@@ -1,21 +1,20 @@
 advent_of_code::solution!(1);
 
 pub fn part_one(input: &str) -> Option<u32> {
-    Some(
-        input
-            .lines()
-            .map(|s| {
-                s.chars().filter(|c| c.is_digit(10)).collect()
-            })
-            .collect::<Vec<String>>()
-            .iter()
-            .map(|s| {
-                s.chars().next().unwrap().to_digit(10).unwrap() * 10 + s.chars().last().unwrap().to_digit(10).unwrap()
-            })
-            .collect::<Vec<u32>>()
-            .iter()
-            .sum::<u32>()
-    )
+    input
+        .lines()
+        .map(|s| {
+            s.chars().filter(|c| c.is_digit(10)).collect()
+        })
+        .collect::<Vec<String>>()
+        .iter()
+        .map(|s| {
+            s.chars().next().unwrap().to_digit(10).unwrap() * 10 + s.chars().last().unwrap().to_digit(10).unwrap()
+        })
+        .collect::<Vec<u32>>()
+        .iter()
+        .sum::<u32>()
+        .into()
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
