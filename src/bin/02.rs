@@ -23,9 +23,8 @@ impl GameSet {
 pub fn part_one(input: &str) -> Option<u32> {
     let mut games = vec![];
     for (i, line) in input.lines().enumerate() {
+        let line = line.split(':').collect::<Vec<&str>>()[1];
         let mut game = Game {id: i + 1, sets: vec![]};
-        let game_prefix = format!("Game {}: ", i + 1);
-        let line = line.strip_prefix(&game_prefix).unwrap();
         for game_set in line.split(';').collect::<Vec<&str>>() {
             let mut set = GameSet {blue: 0, green: 0, red: 0};
             for dice in game_set.split(',').collect::<Vec<&str>>() {
