@@ -21,6 +21,28 @@ impl GameSet {
 }
 
 pub fn part_one(input: &str) -> Option<u32> {
+    let games = parse_games(input);
+    let mut res = 0;
+    for game in games.iter() {
+        let mut is_valid_set = true;
+        for set in game.sets.iter() {
+            if !set.is_valid_set() {
+                is_valid_set = false;
+            }
+        }
+        if is_valid_set {
+            res += game.id;
+        }
+    }
+    Some(res as u32)
+}
+
+pub fn part_two(input: &str) -> Option<u32> {
+    let games = parse_games(input);
+    None
+}
+
+fn parse_games(input: &str) -> Vec<Game> {
     let mut games = vec![];
     for (i, line) in input.lines().enumerate() {
         let line = line.split(':').collect::<Vec<&str>>()[1];
@@ -41,23 +63,7 @@ pub fn part_one(input: &str) -> Option<u32> {
         }
         games.push(game);
     }
-    let mut res = 0;
-    for game in games.iter() {
-        let mut is_valid_set = true;
-        for set in game.sets.iter() {
-            if !set.is_valid_set() {
-                is_valid_set = false;
-            }
-        }
-        if is_valid_set {
-            res += game.id;
-        }
-    }
-    Some(res as u32)
-}
-
-pub fn part_two(input: &str) -> Option<u32> {
-    None
+    games
 }
 
 #[cfg(test)]
