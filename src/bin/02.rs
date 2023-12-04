@@ -39,7 +39,23 @@ pub fn part_one(input: &str) -> Option<u32> {
 
 pub fn part_two(input: &str) -> Option<u32> {
     let games = parse_games(input);
-    None
+    let mut power_sum = 0;
+    games.iter().for_each(|g| {
+        let (mut max_red, mut max_blue, mut max_green) = (0, 0, 0);
+        g.sets.iter().for_each(|s| {
+            if s.blue > max_blue {
+                max_blue = s.blue;
+            }
+            if s.green > max_green {
+                max_green = s.green;
+            }
+            if s.red > max_red {
+                max_red = s.red;
+            }
+        });
+        power_sum += max_red * max_blue * max_green;
+    });
+    Some(power_sum)
 }
 
 fn parse_games(input: &str) -> Vec<Game> {
