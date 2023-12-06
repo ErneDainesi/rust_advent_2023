@@ -24,13 +24,13 @@ pub fn part_one(input: &str) -> Option<u32> {
     let games = parse_games(input);
     let mut res = 0;
     for game in games.iter() {
-        let mut is_valid_set = true;
+        let mut is_valid_game = true;
         for set in game.sets.iter() {
             if !set.is_valid_set() {
-                is_valid_set = false;
+                is_valid_game = false;
             }
         }
-        if is_valid_set {
+        if is_valid_game {
             res += game.id;
         }
     }
