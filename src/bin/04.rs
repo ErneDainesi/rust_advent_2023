@@ -13,14 +13,9 @@ pub fn part_one(input: &str) -> Option<u32> {
             .map(|n| n.parse::<u32>().unwrap_or(0))
             .filter(|n| *n != 0)
             .collect();
-        let mut power: u32 = 0;
-        let base: u32 = 2;
-        let mut partial = 0;
-        res.iter().for_each(|_| {
-            partial = base.pow(power);
-            power += 1;
-        });
-        result += partial;
+        if res.len() != 0 {
+            result += 2_u32.pow((res.len() as u32) - 1);
+        }
     });
     Some(result)
 }
